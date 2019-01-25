@@ -1,0 +1,7 @@
+-cp src
+-main Main
+
+-js bin/js/main.js
+
+-lib heaps
+-lib castle
