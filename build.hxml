@@ -1,4 +1,5 @@
 -cp src
+-debug
 -main Main
 
 -js bin/js/main.js

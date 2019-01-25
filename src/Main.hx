@@ -39,6 +39,8 @@ class Main extends hxd.App {
     tf.dropShadow = { dx : 0.5, dy : 0.5, color : 0xFF0000, alpha : 0.8 };
     tf.text = "Héllò h2d !";
 
+    trace("hello$");
+
     tf.y = 20;
     tf.x = 20;
     tf.scale(7);
