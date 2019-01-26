@@ -1034,17 +1034,17 @@ PrefabInstance:
     - target: {fileID: 7884909413695706759, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
         type: 3}
       propertyPath: m_Name
-      value: Player up
+      value: Sniper
       objectReference: {fileID: 0}
     - target: {fileID: 7884909413695706778, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
         type: 3}
       propertyPath: ShootingSpeed
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7884909413695706778, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
         type: 3}
       propertyPath: AimSpeed
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7884909413695706778, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
         type: 3}
@@ -1118,11 +1118,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 485213365, guid: 70a02b4c6b247aa419e66d3fcbd25e9a, type: 3}
       propertyPath: m_Size.y
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 485213365, guid: 70a02b4c6b247aa419e66d3fcbd25e9a, type: 3}
       propertyPath: m_Offset.y
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70a02b4c6b247aa419e66d3fcbd25e9a, type: 3}
