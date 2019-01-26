@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -33,8 +32,7 @@ public class Player : MonoBehaviour
         {
             if (delay >= ShootingSpeed)
             {
-                Debug.Log("shoot");
-                Instantiate(BulletPrefab.gameObject);
+                Instantiate(BulletPrefab.gameObject, transform.position, transform.rotation);
 
                 delay = 0;
             }
