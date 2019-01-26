@@ -122,6 +122,12 @@ public class PlayerManager : MonoBehaviour
         UpdateInput();
     }
 
+    bool dragging = false;
+    float dragAngle = 0f;
+    float dragAngleStart = 0f;
+    float lastAngleDiff = 0f;
+    Vector3 lastTouchRelativePost = Vector3.zero;
+
     void UpdateInput()
     {
 
@@ -141,12 +147,43 @@ public class PlayerManager : MonoBehaviour
 
         float deg = Vector3.SignedAngle(Vector3.right,touchRelativePosition,Vector3.forward);
 
-        Debug.Log(deg);
+        //Debug.Log(deg);
 
-        if(t.delta.sqrMagnitude > 0.001f)
+        if (t.state == TouchState.ENDED)
         {
-            RotatePlayers(t.delta.x * 0.32f);
+            dragging = false;
+            return;
+        }else if(t.state == TouchState.BEGIN || t.state == TouchState.DOING)
+        {
+            dragging = true;
         }
+
+        if (!dragging)
+        {
+            dragAngleStart = deg;
+            dragAngle = 0f;
+            lastAngleDiff = 0f;
+        }
+        else
+        {
+            float dadelta = Vector3.SignedAngle(touchRelativePosition, lastTouchRelativePost, Vector3.forward) * 60f;
+            dragAngle += dadelta;
+
+            RotatePlayers(dadelta * Mathf.Deg2Rad);
+            /*
+            
+            if (t.delta.sqrMagnitude > 0.001f)
+            {
+                float angleDiff = dragAngle - dragAngleStart;
+                float angleDelta = lastAngleDiff - angleDiff;
+                RotatePlayers(angleDelta * Mathf.Deg2Rad);
+            }*/
+
+
+        }
+
+        lastTouchRelativePost = touchRelativePosition;
+
     }
     
 
