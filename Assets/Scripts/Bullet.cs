@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     public float LifeSpan;
     public float Speed = 2;
+    public Player player { get; set; }
 
     float x;
     float y;
@@ -18,6 +19,9 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Player" || collision.tag == "Bullet")
             return;
 
+        // uber ugly fix, damn Unity bug
+        player.OnTriggerExit2D(collision);
+        
         Destroy(collision.gameObject);
         Destroy(gameObject);
     }
