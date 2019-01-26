@@ -5,8 +5,6 @@ public class Player : MonoBehaviour
 {
     public Bullet BulletPrefab;
 
-    public Gradient Color;
-
     public float AimSpeed;
     public float ShootingSpeed;
 
@@ -52,8 +50,6 @@ public class Player : MonoBehaviour
         {
             if (!hasAimed)
             {
-                sprite.color = Color.Evaluate(delay);
-
                 if (delay >= AimSpeed)
                 {
                     Fire();
@@ -68,8 +64,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            sprite.color = Color.Evaluate(0);
-
             hasAimed = false;
         }
     }
