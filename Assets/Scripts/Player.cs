@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Player : MonoBehaviour
@@ -31,7 +30,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         if (enemiesInRange.Contains(collision))
             enemiesInRange.Remove(collision);
@@ -43,7 +42,8 @@ public class Player : MonoBehaviour
         {
             if (delay >= ShootingSpeed)
             {
-                Instantiate(BulletPrefab.gameObject, transform.position, transform.rotation);
+                GameObject bullet = Instantiate(BulletPrefab.gameObject, transform.position, transform.rotation);
+                bullet.GetComponent<Bullet>().player = this;
 
                 delay = 0;
             }
