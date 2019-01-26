@@ -33,8 +33,6 @@ public class PlayerManager : MonoBehaviour
     public Transform playerLeftDirection;
     public Transform playerRightDirection;
 
-     public Slider mainSlider;
-
 
     List<Touch> touches = new List<Touch>();
     List<Touch> touchgesgc = new List<Touch>();
