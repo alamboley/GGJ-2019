@@ -12,11 +12,12 @@ public class WaveManager : MonoBehaviour
     public Enemy EnemyPrefab;
     public Transform RootSpawner;
     public Text WaveText;
-
-    float time = 0;
+    
     float diagonal;
 
-
+    /// <summary>
+    /// Start function called at the beginning of the project
+    /// </summary>
     void Start()
     {
         currentWave = 1;
@@ -31,6 +32,9 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(UpdateMonsters());
     }
     
+    /// <summary>
+    /// Update function called every frame
+    /// </summary>
     void Update()
     {
         // Decrease time between each monster spawn
@@ -43,38 +47,50 @@ public class WaveManager : MonoBehaviour
         UpdateWaveText();
     }
 
+    /// <summary>
+    /// UI Text update
+    /// </summary>
     void UpdateWaveText()
     {
         WaveText.text = "Vague : " + currentWave;
     }
 
+    /// <summary>
+    /// Incremente the monsters killed count
+    /// </summary>
     public void MonsterKilled()
     {
         monstersKilledCount++;
     }
 
-    void SpawnMonsters()
-    {
-        int monsterCount = (int)(ratioSpawn * 2);
-
-        for(int i = 0; i < monsterCount; i++)
-        {
-            Instantiate(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner);
-        }
-    }
-
+    /// <summary>
+    /// Get a random spawning position for monsters
+    /// </summary>
+    /// <returns></returns>
     Vector3 GetRandomPosition()
     {
         Vector2 randomAngle = Random.insideUnitCircle.normalized;
 
         return randomAngle * diagonal;
     }
-
+    
+    /// <summary>
+    /// Coroutine called every wave duration to Spawn some monsters
+    /// </summary>
+    /// <returns></returns>
     IEnumerator UpdateMonsters()
     {
         while(true)
         {
-            SpawnMonsters();
+            int monsterCount = (int)(ratioSpawn * 2);
+
+            // Instantiate a new monster with a little delay
+            for (int i = 0; i < monsterCount; i++)
+            {
+                Instantiate(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner);
+                yield return new WaitForSeconds(0.8f);
+            }
+
             yield return new WaitForSeconds(waveDuration);
         }
     }
