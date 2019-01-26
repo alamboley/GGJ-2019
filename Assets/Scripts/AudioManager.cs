@@ -20,6 +20,7 @@ public class AudioSourceRef
 {
     public AudioSource source;
     public AudioTrack track;
+    public int beatDelay = 0;
 }
 
 public class AudioManager : MonoBehaviour
@@ -62,10 +63,23 @@ public class AudioManager : MonoBehaviour
 
             if (OnBeat != null)
                 OnBeat.Invoke();
+
+            beat++;
+
+            ProcessTracks();
         }
 
     }
 
+
+    void ProcessTracks()
+    {
+        foreach (AudioSourceRef sr in sources)
+        {
+            if (beat > sr.beatDelay && sr.source.mute)
+                sr.source.mute = false;
+        }
+    }
 
 
     void PlayAll()
@@ -73,6 +87,7 @@ public class AudioManager : MonoBehaviour
         startTime = AudioSettings.dspTime + 4 * beattime;
         foreach(AudioSourceRef sr in sources)
         {
+            sr.source.mute = true;
             sr.source.PlayScheduled(startTime);
         }
     }

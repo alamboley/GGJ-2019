@@ -305,14 +305,19 @@ MonoBehaviour:
   sources:
   - source: {fileID: 8256231937887586870}
     track: 0
+    beatDelay: 64
   - source: {fileID: 8256231938439027843}
     track: 1
+    beatDelay: 96
   - source: {fileID: 8256231936866282505}
     track: 2
+    beatDelay: 0
   - source: {fileID: 8256231938046069920}
     track: 3
+    beatDelay: 16
   - source: {fileID: 8256231938436270090}
     track: 4
+    beatDelay: 128
   OnBeat:
     m_PersistentCalls:
       m_Calls: []
@@ -615,7 +620,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 800cc2769f4d449ca9204bb7b0e6446f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.45
   m_Pitch: 1
   Loop: 1
   Mute: 0
