@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
     public Bullet BulletPrefab;
+    public WaveManager WaveManager;
 
     public Gradient Color;
 
@@ -41,7 +42,10 @@ public class Player : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (enemiesInRange.Contains(collision))
+        {
             enemiesInRange.Remove(collision);
+            WaveManager.MonsterKilled();
+        }
     }
 
     void Update()

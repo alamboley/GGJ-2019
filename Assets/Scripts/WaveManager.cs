@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
     public int currentWave = 1;
-    public int monsterCount = 1;
-    public int waveDuration = 10;
+    public int monstersKilledCount = 0;
+    public float waveDuration = 7.5f;
     public float ratioSpawn = 1.9f;
 
     public Enemy EnemyPrefab;
@@ -22,16 +23,33 @@ public class WaveManager : MonoBehaviour
         float height = 2f * cam.orthographicSize;
         float width = height * cam.aspect;
         diagonal = Mathf.Sqrt((height * height) + (width * width)) / 2;
+
+        //GetComponent<Canvas>().GetComponentInChildren<Text>().text = "Vague : " + currentWave;
+
+        SpawnMonsters();
     }
     
     void Update()
     {
         if(Time.time - time > waveDuration)
         {
-            currentWave++;
             time = Time.time;
             SpawnMonsters();
         }
+
+        // Decrease time between each monster spawn
+        if(monstersKilledCount >= (currentWave + 1) * ratioSpawn)
+        {
+            currentWave++;
+            waveDuration -= 0.1f;
+        }
+
+        //GetComponent<Canvas>().GetComponentInChildren<Text>().text = "Vague : " + currentWave;
+    }
+
+    public void MonsterKilled()
+    {
+        monstersKilledCount++;
     }
 
     void SpawnMonsters()
