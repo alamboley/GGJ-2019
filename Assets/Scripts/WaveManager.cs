@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
 
     public Enemy EnemyPrefab;
     public Transform RootSpawner;
+    public Text WaveText;
 
     float time = 0;
     float diagonal;
@@ -24,7 +25,7 @@ public class WaveManager : MonoBehaviour
         float width = height * cam.aspect;
         diagonal = Mathf.Sqrt((height * height) + (width * width)) / 2;
 
-        //GetComponent<Canvas>().GetComponentInChildren<Text>().text = "Vague : " + currentWave;
+        UpdateWaveText();
 
         SpawnMonsters();
     }
@@ -44,7 +45,12 @@ public class WaveManager : MonoBehaviour
             waveDuration -= 0.1f;
         }
 
-        //GetComponent<Canvas>().GetComponentInChildren<Text>().text = "Vague : " + currentWave;
+        UpdateWaveText();
+    }
+
+    void UpdateWaveText()
+    {
+        WaveText.text = "Vague : " + currentWave;
     }
 
     public void MonsterKilled()

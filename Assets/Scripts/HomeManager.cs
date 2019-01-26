@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class HomeManager : MonoBehaviour
 {
+    public Text LifeText; 
     public int life = 3;
+
+    void Start()
+    {
+        UpdateLifeText();
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,7 +20,14 @@ public class HomeManager : MonoBehaviour
 
         Destroy(collision.gameObject);
 
-        if (life-- == 0)
+        if (--life == 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        UpdateLifeText();
+    }
+    
+    void UpdateLifeText()
+    {
+        LifeText.text = "Vies : " + life;
     }
 }
