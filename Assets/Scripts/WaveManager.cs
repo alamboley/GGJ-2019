@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
@@ -34,7 +32,7 @@ public class WaveManager : MonoBehaviour
     void SpawnMonsters()
     {
         Vector3 position = GetRandomPosition();
-        monster = Instantiate(monster, position, Quaternion.identity) as GameObject;
+        Instantiate(monster, position, Quaternion.identity);
     }
 
     Vector3 GetRandomPosition()
