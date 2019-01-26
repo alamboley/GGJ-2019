@@ -532,12 +532,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWave: 1
   monstersKilledCount: 0
+  minMonsters: 4
+  maxMonters: 100
+  gameStartTime: 0
   waveDuration: 7.5
   ratioSpawn: 3.4
+  endGameTime: 300
+  enemies: []
   EnemyPrefab: {fileID: 1999851090874484085, guid: 5728de6d4d44b5f479d4fa2067539f14,
     type: 3}
   RootSpawner: {fileID: 375074572}
   WaveText: {fileID: 1866242838}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1866242836
 GameObject:
   m_ObjectHideFlags: 0

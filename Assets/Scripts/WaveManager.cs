@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +7,22 @@ public class WaveManager : MonoBehaviour
 {
     public int currentWave = 1;
     public int monstersKilledCount = 0;
+    public int minMonsters = 2;
+    public int maxMonters = 100;
+
+    public float gameStartTime = 0f;
     public float waveDuration = 7.5f;
     public float ratioSpawn = 1.9f;
+    public float endGameTime = 5f * 60f; // 60 seconds * 5
+    private float previousCurveValue;
+
+    public List<Enemy> enemies;
 
     public Enemy EnemyPrefab;
     public Transform RootSpawner;
     public Text WaveText;
+
+    public AnimationCurve curve;
     
     float diagonal;
 
@@ -29,7 +40,14 @@ public class WaveManager : MonoBehaviour
 
         UpdateWaveText();
 
+        gameStartTime = Time.unscaledTime;
+
         StartCoroutine(UpdateMonsters());
+    }
+
+    void Awake()
+    {
+        enemies = new List<Enemy>();
     }
     
     /// <summary>
@@ -58,9 +76,10 @@ public class WaveManager : MonoBehaviour
     /// <summary>
     /// Incremente the monsters killed count
     /// </summary>
-    public void MonsterKilled()
+    public void MonsterKilled(Enemy enemy)
     {
         monstersKilledCount++;
+        enemies.Remove(enemy);
     }
 
     /// <summary>
@@ -82,12 +101,12 @@ public class WaveManager : MonoBehaviour
     {
         while(true)
         {
-            int monsterCount = (int)(ratioSpawn * 2);
-
-            // Instantiate a new monster with a little delay
-            for (int i = 0; i < monsterCount; i++)
+            float elapsedTime = Time.unscaledTime - gameStartTime;
+            float curvevalue = curve.Evaluate(elapsedTime / endGameTime);
+            int enemiesRequired = Mathf.RoundToInt(Mathf.Lerp(minMonsters,maxMonters,curvevalue));
+            for (int i = enemies.Count; i < enemiesRequired; i++)
             {
-                Instantiate(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner);
+                enemies.Add(Instantiate<Enemy>(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner));
                 yield return new WaitForSeconds(0.8f);
             }
 
