@@ -7,18 +7,23 @@ public class WaveManager : MonoBehaviour
     public int waveDuration = 10;
     public float ratioSpawn = 1.9f;
 
-    public GameObject monster;
-    public GameObject spawn;
+    public Enemy EnemyPrefab;
+    public Transform RootSpawner;
 
-    private float time = 0;
+    float time = 0;
+    float diagonal;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         currentWave = 1;
-    }
 
-    // Update is called once per frame
+        Camera cam = Camera.main;
+        float height = 2f * cam.orthographicSize;
+        float width = height * cam.aspect;
+        diagonal = Mathf.Sqrt((height * height) + (width * width)) / 2;
+    }
+    
     void Update()
     {
         if(Time.time - time > waveDuration)
@@ -31,15 +36,13 @@ public class WaveManager : MonoBehaviour
 
     void SpawnMonsters()
     {
-        Vector3 position = GetRandomPosition();
-        Instantiate(monster, position, Quaternion.identity);
+        Instantiate(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner);
     }
 
     Vector3 GetRandomPosition()
     {
-        float x = Random.Range(spawn.transform.localPosition.x, spawn.transform.localScale.x);
-        float y = Random.Range(spawn.transform.localPosition.y, spawn.transform.localScale.y);
+        Vector2 randomAngle = Random.insideUnitCircle.normalized;
 
-        return new Vector3(x, y, 0);
+        return randomAngle * diagonal;
     }
 }
