@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!enemiesInRange.Contains(collision))
+        if (collision.tag != "Bullet" && !enemiesInRange.Contains(collision))
             enemiesInRange.Add(collision);
 
         delay = 0;
