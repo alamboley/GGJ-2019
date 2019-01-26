@@ -11,14 +11,12 @@ public class WaveManager : MonoBehaviour
     public GameObject spawn;
 
     private float time = 0;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         currentWave = 1;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if(Time.time - time > waveDuration)
@@ -37,9 +35,21 @@ public class WaveManager : MonoBehaviour
 
     Vector3 GetRandomPosition()
     {
-        float x = Random.Range(spawn.transform.localPosition.x, spawn.transform.localScale.x);
-        float y = Random.Range(spawn.transform.localPosition.y, spawn.transform.localScale.y);
+        Bounds bounds = OrthographicBounds();
+        Vector2 randomAngle = Random.insideUnitCircle.normalized;
+        float diagonal = Mathf.Sqrt((bounds.extents.x * bounds.extents.x) + (bounds.extents.y * bounds.extents.y)) / 2;
 
-        return new Vector3(x, y, 0);
+        Debug.Log(randomAngle * diagonal);
+
+        return randomAngle;
+        //return Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+    }
+
+    static Bounds OrthographicBounds()
+    {
+        float screenAspect = (float)Screen.width / (float)Screen.height;
+        float cameraHeight = Camera.main.orthographicSize * 2;
+        
+        return new Bounds(Camera.main.transform.position, new Vector3(cameraHeight * screenAspect, cameraHeight, 0));
     }
 }
