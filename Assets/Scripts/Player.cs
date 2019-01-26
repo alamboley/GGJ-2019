@@ -4,23 +4,24 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
     public Bullet BulletPrefab;
-    public WaveManager WaveManager;
 
     public Gradient Color;
 
     public float AimSpeed;
     public float ShootingSpeed;
 
+    WaveManager WaveManager;
+
     bool hasAimed;
     float delay;
 
-    public List<Collider2D> enemiesInRange;
+    public List<Collider2D> enemiesInRange = new List<Collider2D>();
 
     SpriteRenderer sprite;
 
     private void Awake()
     {
-        enemiesInRange = new List<Collider2D>();
+        WaveManager = FindObjectOfType<WaveManager>();
 
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Bullet" && !enemiesInRange.Contains(collision))
+        if (collision.tag == "Enemy" && !enemiesInRange.Contains(collision))
         {
             enemiesInRange.Add(collision);
 

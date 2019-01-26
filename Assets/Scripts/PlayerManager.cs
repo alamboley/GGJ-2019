@@ -25,19 +25,22 @@ public class PlayerManager : MonoBehaviour
 {
     public float speedCircleRotation;
 
-    public List<Player> players;
-
-    public Transform playerDownDirection;
-    public Transform playerUpDirection;
-    public Transform playerLeftDirection;
-    public Transform playerRightDirection;
-
+    public Player[] PlayersPrefab;
+    List<Player> players = new List<Player>();
 
     List<Touch> touches = new List<Touch>();
     List<Touch> touchgesgc = new List<Touch>();
 
     void Start()
     {
+        int distanceAngleBetweenPlayers = 360 / PlayersPrefab.Length;
+
+        for(int i = 0; i < PlayersPrefab.Length; ++i)
+        {
+            float x = Mathf.Cos((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
+            float y = Mathf.Sin((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
+            players.Add(Instantiate(PlayersPrefab[i], new Vector3(x, y, 0), Quaternion.AngleAxis(distanceAngleBetweenPlayers * i, Vector3.forward)));
+        }
     }
 
     Touch GetTouch(int id)
@@ -189,44 +192,6 @@ public class PlayerManager : MonoBehaviour
         foreach (Player player in players)
         {
             player.transform.RotateAround(Vector3.zero, Vector3.back, deltaDeg);
-        }
-    }
-
-
-    /// <summary>
-    /// J'ai essayé de vérifier le nombre de joueur et d'en instancier grâce à des prefabs
-    /// Mais ça ne fonctionne pas
-    /// </summary>
-    public void AddPlayer()
-    {
-        if(players.Count < 4)
-        {
-            /*foreach(Player player in players)
-            {
-                Destroy(player);
-            }
-            players.Clear();*/
-
-            switch (players.Count)
-            {
-                case 1:
-                    Instantiate(playerUpDirection);
-                    Instantiate(playerDownDirection);
-                    break;
-                case 2:
-                    Instantiate(playerUpDirection);
-                    Instantiate(playerLeftDirection);
-                    Instantiate(playerRightDirection);
-                    break;
-                case 3:
-                    Instantiate(playerUpDirection);
-                    Instantiate(playerDownDirection);
-                    Instantiate(playerLeftDirection);
-                    Instantiate(playerRightDirection);
-                    break;
-                default:
-                    break;
-            }
         }
     }
 }
