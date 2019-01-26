@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
@@ -27,17 +28,11 @@ public class WaveManager : MonoBehaviour
 
         UpdateWaveText();
 
-        SpawnMonsters();
+        StartCoroutine(UpdateMonsters());
     }
     
     void Update()
     {
-        if(Time.time - time > waveDuration)
-        {
-            time = Time.time;
-            SpawnMonsters();
-        }
-
         // Decrease time between each monster spawn
         if(monstersKilledCount >= (currentWave + 1) * ratioSpawn)
         {
@@ -73,5 +68,14 @@ public class WaveManager : MonoBehaviour
         Vector2 randomAngle = Random.insideUnitCircle.normalized;
 
         return randomAngle * diagonal;
+    }
+
+    IEnumerator UpdateMonsters()
+    {
+        while(true)
+        {
+            SpawnMonsters();
+            yield return new WaitForSeconds(waveDuration);
+        }
     }
 }
