@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("ennemy spotted");
+        Debug.Log("enemy spotted");
     }
 
     void Update()

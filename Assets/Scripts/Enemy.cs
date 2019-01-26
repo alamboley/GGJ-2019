@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class Ennemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed;
 
     void Start()
     {
