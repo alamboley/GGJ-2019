@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 [Serializable]
@@ -125,7 +124,6 @@ public class PlayerManager : MonoBehaviour
     bool dragging = false;
     float dragAngle = 0f;
     float dragAngleStart = 0f;
-    float lastAngleDiff = 0f;
     Vector3 lastTouchRelativePost = Vector3.zero;
 
     void UpdateInput()
@@ -162,7 +160,6 @@ public class PlayerManager : MonoBehaviour
         {
             dragAngleStart = deg;
             dragAngle = 0f;
-            lastAngleDiff = 0f;
         }
         else
         {
