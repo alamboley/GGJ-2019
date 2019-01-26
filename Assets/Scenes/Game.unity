@@ -216,7 +216,7 @@ Transform:
   - {fileID: 1081741948}
   - {fileID: 1846050146}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &485213362 stripped
 GameObject:
@@ -492,6 +492,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6391735134107659372, guid: 5728de6d4d44b5f479d4fa2067539f14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -572,6 +577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6391735134107659372, guid: 5728de6d4d44b5f479d4fa2067539f14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -651,6 +661,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391735134107659372, guid: 5728de6d4d44b5f479d4fa2067539f14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
@@ -912,7 +927,7 @@ RectTransform:
   - {fileID: 798821815}
   - {fileID: 1206706590}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -966,6 +981,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391735134107659372, guid: 5728de6d4d44b5f479d4fa2067539f14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
@@ -1348,7 +1368,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507798047
 GameObject:
@@ -1502,6 +1522,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391735134107659372, guid: 5728de6d4d44b5f479d4fa2067539f14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
@@ -1662,6 +1687,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6391735134107659372, guid: 5728de6d4d44b5f479d4fa2067539f14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1745,12 +1775,12 @@ PrefabInstance:
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.54
+      value: 5.46
       objectReference: {fileID: 0}
     - target: {fileID: 6697433660011117064, guid: 5728de6d4d44b5f479d4fa2067539f14,
         type: 3}
@@ -1821,6 +1851,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player up
+      objectReference: {fileID: 0}
+    - target: {fileID: 7884909413695706778, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
+        type: 3}
+      propertyPath: ShootingSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7884909413695706757, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
         type: 3}
