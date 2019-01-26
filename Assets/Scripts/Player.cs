@@ -43,10 +43,7 @@ public class Player : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (enemiesInRange.Contains(collision))
-        {
             enemiesInRange.Remove(collision);
-            WaveManager.MonsterKilled();
-        }
     }
 
     void Update()

@@ -29,6 +29,8 @@ public class Bullet : MonoBehaviour
             player.OnTriggerExit2D(collision);
 
             Destroy(collision.gameObject);
+
+            FindObjectOfType<WaveManager>().MonsterKilled();
         }
     }
 
