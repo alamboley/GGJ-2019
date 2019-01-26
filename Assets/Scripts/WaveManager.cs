@@ -60,7 +60,12 @@ public class WaveManager : MonoBehaviour
 
     void SpawnMonsters()
     {
-        Instantiate(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner);
+        int monsterCount = (int)(ratioSpawn * 2);
+
+        for(int i = 0; i < monsterCount; i++)
+        {
+            Instantiate(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner);
+        }
     }
 
     Vector3 GetRandomPosition()
