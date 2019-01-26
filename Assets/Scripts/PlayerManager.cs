@@ -28,19 +28,32 @@ public class PlayerManager : MonoBehaviour
     public Player[] PlayersPrefab;
     List<Player> players = new List<Player>();
 
+    public AnimationCurve curve;
+    public int minPlayers = 1;
+    public int maxPlayers = 5;
+
+    public float endGameTime = 5f * 60f;
+    private float gameStartTime;
+
     List<Touch> touches = new List<Touch>();
     List<Touch> touchgesgc = new List<Touch>();
 
     void Start()
     {
-        int distanceAngleBetweenPlayers = 360 / PlayersPrefab.Length;
+        gameStartTime = Time.unscaledTime;
 
-        for(int i = 0; i < PlayersPrefab.Length; ++i)
+        for (int i = 0; i < players.Count; ++i)
         {
-            float x = Mathf.Cos((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
-            float y = Mathf.Sin((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
-            players.Add(Instantiate(PlayersPrefab[i], new Vector3(x, y, 0), Quaternion.AngleAxis(distanceAngleBetweenPlayers * i, Vector3.forward)));
+            AddPlayer(i);
         }
+    }
+
+    void AddPlayer(int i)
+    {
+        int distanceAngleBetweenPlayers = 360 / PlayersPrefab.Length;
+        float x = Mathf.Cos((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
+        float y = Mathf.Sin((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
+        players.Add(Instantiate(PlayersPrefab[i], new Vector3(x, y, 0), Quaternion.AngleAxis(distanceAngleBetweenPlayers * i, Vector3.forward)));
     }
 
     Touch GetTouch(int id)
@@ -84,6 +97,13 @@ public class PlayerManager : MonoBehaviour
         }
         touchgesgc.Clear();
 
+        float elapsedTime = Time.unscaledTime - gameStartTime;
+        float curvevalue = curve.Evaluate(elapsedTime / endGameTime);
+        int playersRequired = Mathf.RoundToInt(Mathf.Lerp(minPlayers, maxPlayers, curvevalue));
+        for(int i = players.Count; i < playersRequired; i++)
+        {
+            AddPlayer(i);
+        }
 
         Touch currentMouseTouch = GetMouseTouch();
 
@@ -185,7 +205,6 @@ public class PlayerManager : MonoBehaviour
         lastTouchRelativePost = touchRelativePosition;
 
     }
-    
 
     public void RotatePlayers(float deltaDeg)
     {
