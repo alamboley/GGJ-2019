@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7884909413695706759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,7 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 2341099891173575233, guid: e3cba70ec1e8f0b4ab75f29063f5abcc,
     type: 3}
-  ShootingSpeed: 0.5
+  ShootingSpeed: 2
+  enemiesInRange: []
 --- !u!61 &485213365
 BoxCollider2D:
   m_ObjectHideFlags: 0

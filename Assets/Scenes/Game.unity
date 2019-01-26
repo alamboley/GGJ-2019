@@ -411,7 +411,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1113,7 +1113,6 @@ MonoBehaviour:
     type: 3}
   playerRightDirection: {fileID: 2358622097816251796, guid: e119f0e5ea83fea4ca4560b086ce08ed,
     type: 3}
-  mainSlider: {fileID: 798821816}
 --- !u!4 &1679835154
 Transform:
   m_ObjectHideFlags: 0
@@ -1269,6 +1268,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player up
       objectReference: {fileID: 0}
+    - target: {fileID: 7884909413695706778, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
+        type: 3}
+      propertyPath: ShootingSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7884909413695706778, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
+        type: 3}
+      propertyPath: AimSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7884909413695706757, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1323,6 +1332,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485213365, guid: 70a02b4c6b247aa419e66d3fcbd25e9a, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 485213365, guid: 70a02b4c6b247aa419e66d3fcbd25e9a, type: 3}
+      propertyPath: m_Offset.y
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70a02b4c6b247aa419e66d3fcbd25e9a, type: 3}

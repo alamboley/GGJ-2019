@@ -5,8 +5,10 @@ public class Player : MonoBehaviour
 {
     public Bullet BulletPrefab;
 
+    public float AimSpeed;
     public float ShootingSpeed;
 
+    bool hasAimed;
     float delay;
 
     public List<Collider2D> enemiesInRange;
@@ -40,15 +42,30 @@ public class Player : MonoBehaviour
     {
         if (enemiesInRange.Count > 0)
         {
-            if (delay >= ShootingSpeed)
+            if (!hasAimed)
             {
-                GameObject bullet = Instantiate(BulletPrefab.gameObject, transform.position, transform.rotation);
-                bullet.GetComponent<Bullet>().player = this;
 
-                delay = 0;
+                if (delay >= AimSpeed)
+                {
+                    Fire();
+
+                    hasAimed = true;
+                }
             }
+            else if (delay >= ShootingSpeed)
+                Fire();
 
-            delay += Time.deltaTime;
+             delay += Time.deltaTime;
         }
+        else
+            hasAimed = false;
+    }
+
+    void Fire()
+    {
+        GameObject bullet = Instantiate(BulletPrefab.gameObject, transform.position, transform.rotation);
+        bullet.GetComponent<Bullet>().player = this;
+
+        delay = 0;
     }
 }
