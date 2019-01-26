@@ -2,6 +2,8 @@
 
 public class Player : MonoBehaviour
 {
+    public Bullet BulletPrefab;
+
     public bool IsFiring { get; private set; }
 
     public float ShootingSpeed;
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
             if (delay >= ShootingSpeed)
             {
                 Debug.Log("shoot");
+                Instantiate(BulletPrefab.gameObject);
 
                 delay = 0;
             }
