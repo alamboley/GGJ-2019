@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
 
             Destroy(collision.gameObject);
 
-            FindObjectOfType<WaveManager>().MonsterKilled();
+            FindObjectOfType<WaveManager>().MonsterKilled(enemy);
         }
     }
 

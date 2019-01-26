@@ -1,21 +1,34 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
     public int currentWave = 1;
     public int monstersKilledCount = 0;
+    public int minMonsters = 2;
+    public int maxMonters = 100;
+
+    public float gameStartTime = 0f;
     public float waveDuration = 7.5f;
     public float ratioSpawn = 1.9f;
+    public float endGameTime = 5f * 60f; // 60 seconds * 5
+    private float previousCurveValue;
+
+    public List<Enemy> enemies;
 
     public Enemy EnemyPrefab;
     public Transform RootSpawner;
     public Text WaveText;
 
-    float time = 0;
+    public AnimationCurve curve;
+    
     float diagonal;
 
-
+    /// <summary>
+    /// Start function called at the beginning of the project
+    /// </summary>
     void Start()
     {
         currentWave = 1;
@@ -27,17 +40,21 @@ public class WaveManager : MonoBehaviour
 
         UpdateWaveText();
 
-        SpawnMonsters();
+        gameStartTime = Time.unscaledTime;
+
+        StartCoroutine(UpdateMonsters());
+    }
+
+    void Awake()
+    {
+        enemies = new List<Enemy>();
     }
     
+    /// <summary>
+    /// Update function called every frame
+    /// </summary>
     void Update()
     {
-        if(Time.time - time > waveDuration)
-        {
-            time = Time.time;
-            SpawnMonsters();
-        }
-
         // Decrease time between each monster spawn
         if(monstersKilledCount >= (currentWave + 1) * ratioSpawn)
         {
@@ -48,30 +65,52 @@ public class WaveManager : MonoBehaviour
         UpdateWaveText();
     }
 
+    /// <summary>
+    /// UI Text update
+    /// </summary>
     void UpdateWaveText()
     {
         WaveText.text = "Vague : " + currentWave;
     }
 
-    public void MonsterKilled()
+    /// <summary>
+    /// Incremente the monsters killed count
+    /// </summary>
+    public void MonsterKilled(Enemy enemy)
     {
         monstersKilledCount++;
+        enemies.Remove(enemy);
     }
 
-    void SpawnMonsters()
-    {
-        int monsterCount = (int)(ratioSpawn * 2);
-
-        for(int i = 0; i < monsterCount; i++)
-        {
-            Instantiate(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner);
-        }
-    }
-
+    /// <summary>
+    /// Get a random spawning position for monsters
+    /// </summary>
+    /// <returns></returns>
     Vector3 GetRandomPosition()
     {
         Vector2 randomAngle = Random.insideUnitCircle.normalized;
 
         return randomAngle * diagonal;
+    }
+    
+    /// <summary>
+    /// Coroutine called every wave duration to Spawn some monsters
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator UpdateMonsters()
+    {
+        while(true)
+        {
+            float elapsedTime = Time.unscaledTime - gameStartTime;
+            float curvevalue = curve.Evaluate(elapsedTime / endGameTime);
+            int enemiesRequired = Mathf.RoundToInt(Mathf.Lerp(minMonsters,maxMonters,curvevalue));
+            for (int i = enemies.Count; i < enemiesRequired; i++)
+            {
+                enemies.Add(Instantiate<Enemy>(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner));
+                yield return new WaitForSeconds(0.8f);
+            }
+
+            yield return new WaitForSeconds(waveDuration);
+        }
     }
 }
