@@ -19,11 +19,17 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Player" || collision.tag == "Bullet")
             return;
 
-        // uber ugly fix, damn Unity bug
-        player.OnTriggerExit2D(collision);
-        
-        Destroy(collision.gameObject);
         Destroy(gameObject);
+
+        Enemy enemy = collision.GetComponent<Enemy>();
+
+        if (--enemy.life == 0)
+        {
+            // uber ugly fix, damn Unity bug
+            player.OnTriggerExit2D(collision);
+
+            Destroy(collision.gameObject);
+        }
     }
 
     void Update()

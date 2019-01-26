@@ -3,6 +3,7 @@
 public class Enemy : MonoBehaviour
 {
     public float speed;
+    public float life;
 
     void Start()
     {
