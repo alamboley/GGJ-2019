@@ -19,6 +19,7 @@ public class HomeManager : MonoBehaviour
             player.OnTriggerExit2D(collision);
 
         Destroy(collision.gameObject);
+        FindObjectOfType<WaveManager>().MonsterKilled(collision.GetComponent<Enemy>());
 
         if (--life == 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
