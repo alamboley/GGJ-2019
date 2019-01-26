@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
 {
     public Bullet BulletPrefab;
 
+    public Gradient Color;
+
     public float AimSpeed;
     public float ShootingSpeed;
 
@@ -13,9 +15,13 @@ public class Player : MonoBehaviour
 
     public List<Collider2D> enemiesInRange;
 
+    SpriteRenderer sprite;
+
     private void Awake()
     {
         enemiesInRange = new List<Collider2D>();
+
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -44,6 +50,7 @@ public class Player : MonoBehaviour
         {
             if (!hasAimed)
             {
+                sprite.color = Color.Evaluate(delay);
 
                 if (delay >= AimSpeed)
                 {
@@ -58,7 +65,11 @@ public class Player : MonoBehaviour
              delay += Time.deltaTime;
         }
         else
+        {
+            sprite.color = Color.Evaluate(0);
+
             hasAimed = false;
+        }
     }
 
     void Fire()
