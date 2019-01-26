@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
 {
     public float speedCircleRotation;
 
-    public Player[] PlayersPrefab;
+    public Player PlayersPrefab;
     List<Player> players = new List<Player>();
 
     public AnimationCurve curve;
@@ -42,18 +42,25 @@ public class PlayerManager : MonoBehaviour
     {
         gameStartTime = Time.unscaledTime;
 
-        for (int i = 0; i < players.Count; ++i)
-        {
-            AddPlayer(i);
-        }
+        AddPlayers(1);
     }
 
-    void AddPlayer(int i)
+    void AddPlayers(int nbPlayer)
     {
-        int distanceAngleBetweenPlayers = 360 / PlayersPrefab.Length;
-        float x = Mathf.Cos((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
-        float y = Mathf.Sin((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
-        players.Add(Instantiate(PlayersPrefab[i], new Vector3(x, y, 0), Quaternion.AngleAxis(distanceAngleBetweenPlayers * i, Vector3.forward)));
+        foreach(Player player in players)
+        {
+            Destroy(player.gameObject);
+        }
+        players.Clear();
+
+        int distanceAngleBetweenPlayers = 360 / nbPlayer;
+
+        for (int i = 0; i < nbPlayer; ++i)
+        {
+            float x = Mathf.Cos((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
+            float y = Mathf.Sin((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
+            players.Add(Instantiate(PlayersPrefab, new Vector3(x, y, 0), Quaternion.AngleAxis(distanceAngleBetweenPlayers * i, Vector3.forward)));
+        }
     }
 
     Touch GetTouch(int id)
@@ -100,10 +107,8 @@ public class PlayerManager : MonoBehaviour
         float elapsedTime = Time.unscaledTime - gameStartTime;
         float curvevalue = curve.Evaluate(elapsedTime / endGameTime);
         int playersRequired = Mathf.RoundToInt(Mathf.Lerp(minPlayers, maxPlayers, curvevalue));
-        for(int i = players.Count; i < playersRequired; i++)
-        {
-            AddPlayer(i);
-        }
+        if(playersRequired != players.Count)
+            AddPlayers(playersRequired);
 
         Touch currentMouseTouch = GetMouseTouch();
 
