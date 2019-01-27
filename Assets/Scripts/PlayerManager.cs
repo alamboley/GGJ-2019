@@ -111,6 +111,7 @@ public class PlayerManager : MonoBehaviour
             AddPlayers(playersRequired);
 
         Touch currentMouseTouch = GetMouseTouch();
+        
 
 #if UNITY_STANDALONE || UNITY_EDITOR
         if(Input.GetMouseButtonDown(0))
@@ -145,6 +146,18 @@ public class PlayerManager : MonoBehaviour
 #else
         //something
 #endif
+        
+        // Globalement, j'ai pas trop trouvé comment faire. J'ai essayé en copiant un peu les touch du dessus mais ça faisait comme avec la souris
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            // Left key
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            // Right key
+            
+        }
 
         UpdateInput();
     }
