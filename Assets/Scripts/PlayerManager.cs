@@ -28,20 +28,11 @@ public class PlayerManager : MonoBehaviour
     public Player PlayersPrefab;
     List<Player> players = new List<Player>();
 
-    public AnimationCurve curve;
-    public int minPlayers = 1;
-    public int maxPlayers = 5;
-
-    public float endGameTime = 5f * 60f;
-    private float gameStartTime;
-
     List<Touch> touches = new List<Touch>();
     List<Touch> touchgesgc = new List<Touch>();
 
     void Start()
     {
-        gameStartTime = Time.unscaledTime;
-
         AddPlayers(1);
     }
 
@@ -104,9 +95,8 @@ public class PlayerManager : MonoBehaviour
         }
         touchgesgc.Clear();
 
-        float elapsedTime = Time.unscaledTime - gameStartTime;
-        float curvevalue = curve.Evaluate(elapsedTime / endGameTime);
-        int playersRequired = Mathf.RoundToInt(Mathf.Lerp(minPlayers, maxPlayers, curvevalue));
+        float curvevalue = Game.instance.playerProgCurve.Evaluate(Game.instance.gameTimeNormalized);
+        int playersRequired = Mathf.RoundToInt(Mathf.Lerp(Game.instance.minPlayers, Game.instance.maxPlayers, curvevalue));
         if(playersRequired != players.Count)
             AddPlayers(playersRequired);
 

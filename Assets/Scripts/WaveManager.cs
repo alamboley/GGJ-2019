@@ -7,13 +7,10 @@ public class WaveManager : MonoBehaviour
 {
     public int currentWave = 1;
     public int monstersKilledCount = 0;
-    public int minMonsters = 2;
-    public int maxMonters = 100;
 
     public float gameStartTime = 0f;
     public float waveDuration = 7.5f;
     public float ratioSpawn = 1.9f;
-    public float endGameTime = 5f * 60f; // 60 seconds * 5
     private float previousCurveValue;
 
     public List<Enemy> enemies;
@@ -22,7 +19,6 @@ public class WaveManager : MonoBehaviour
     public Transform RootSpawner;
     public Text WaveText;
 
-    public AnimationCurve curve;
     
     float diagonal;
 
@@ -101,9 +97,8 @@ public class WaveManager : MonoBehaviour
     {
         while(true)
         {
-            float elapsedTime = Time.unscaledTime - gameStartTime;
-            float curvevalue = curve.Evaluate(elapsedTime / endGameTime);
-            int enemiesRequired = Mathf.RoundToInt(Mathf.Lerp(minMonsters,maxMonters,curvevalue));
+            float curvevalue = Game.instance.enemyProgCurve.Evaluate(Game.instance.gameTimeNormalized);
+            int enemiesRequired = Mathf.RoundToInt(Mathf.Lerp(Game.instance.minMonsters,Game.instance.maxMonsters,curvevalue));
             for (int i = enemies.Count; i < enemiesRequired; i++)
             {
                 enemies.Add(Instantiate<Enemy>(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner));
