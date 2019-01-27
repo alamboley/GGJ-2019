@@ -12,8 +12,6 @@ public class Enemy : MonoBehaviour
     
     void Update()
     {
-        transform.LookAt(Vector3.zero);
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        transform.rotation = Quaternion.identity;
+        transform.position += -transform.position.normalized * Time.deltaTime * speed;
     }
 }
