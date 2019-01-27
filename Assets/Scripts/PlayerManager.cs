@@ -179,8 +179,8 @@ public class PlayerManager : MonoBehaviour
     }
 
     float keyBoardVelocity = 0f;
-    float keyboardSpeedCap = 60f;
-    float keyBoardBaseSpeed = 50f;
+    float keyboardSpeedCap = 10f;
+    float keyBoardBaseSpeed = 25f;
 
     bool dragging = false;
     float dragAngle = 0f;
