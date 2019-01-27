@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 [Serializable]
 public class Touch
@@ -30,8 +30,13 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public List<Player> players = new List<Player>();
 
+    public UnityEvent OnPlayersCreated;
+
     List<Touch> touches = new List<Touch>();
     List<Touch> touchgesgc = new List<Touch>();
+
+    [HideInInspector]
+    public float CircleDiv = 0f;
 
     void Start()
     {
@@ -46,14 +51,17 @@ public class PlayerManager : MonoBehaviour
         }
         players.Clear();
 
-        int distanceAngleBetweenPlayers = 360 / nbPlayer;
+        CircleDiv = 360f / (float)nbPlayer;
 
         for (int i = 0; i < nbPlayer; ++i)
         {
-            float x = Mathf.Cos((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
-            float y = Mathf.Sin((transform.eulerAngles.z + (distanceAngleBetweenPlayers * i) + 90) * Mathf.Deg2Rad);
-            players.Add(Instantiate(PlayersPrefab, new Vector3(x, y, 0), Quaternion.AngleAxis(distanceAngleBetweenPlayers * i, Vector3.forward)));
+            float x = Mathf.Cos((transform.eulerAngles.z + (CircleDiv * i) + 90) * Mathf.Deg2Rad);
+            float y = Mathf.Sin((transform.eulerAngles.z + (CircleDiv * i) + 90) * Mathf.Deg2Rad);
+            players.Add(Instantiate(PlayersPrefab, new Vector3(x, y, 0), Quaternion.AngleAxis(CircleDiv * i, Vector3.forward)));
         }
+
+        if (OnPlayersCreated != null)
+            OnPlayersCreated.Invoke();
     }
 
     Touch GetTouch(int id)
