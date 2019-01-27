@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 [Serializable]
 public class Touch
@@ -42,7 +43,8 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        randomColors = Game.instance.GetRandomColorConfigSet(Game.instance.maxPlayers);
+        randomColors = Game.instance.colorPalette.ToList();
+        randomColors.Shuffle();
         AddPlayers(1);
     }
 
