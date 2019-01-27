@@ -22,6 +22,8 @@ public class WaveManager : MonoBehaviour
     
     float diagonal;
 
+    float waveQuadrantAngle = 0f;
+
     EnemiesPoolManager EnemiesPoolManager;
 
     /// <summary>
@@ -55,8 +57,11 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     void Update()
     {
+
+        waveQuadrantAngle += 10 * Time.deltaTime;
+
         // Decrease time between each monster spawn
-        if(monstersKilledCount >= (currentWave + 1) * ratioSpawn)
+        if (monstersKilledCount >= (currentWave + 1) * ratioSpawn)
         {
             currentWave++;
             waveDuration -= 0.1f;

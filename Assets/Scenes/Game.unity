@@ -458,14 +458,14 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5016266
-      value: 1.0006866
-      inSlope: 0.31158656
-      outSlope: 0.31158656
+      time: 0.27150184
+      value: 0.56288725
+      inSlope: 0.0075499597
+      outSlope: 0.0075499597
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.48381016
     - serializedVersion: 3
       time: 1.0041809
       value: 0.0070762634
@@ -984,6 +984,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8256231937911173733, guid: 100dc6448a0e2465587222decfbb1c5b,
+        type: 3}
+      propertyPath: OnBeat.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256231937911173733, guid: 100dc6448a0e2465587222decfbb1c5b,
+        type: 3}
+      propertyPath: OnBeat.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256231937911173733, guid: 100dc6448a0e2465587222decfbb1c5b,
+        type: 3}
+      propertyPath: OnBeat.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 100dc6448a0e2465587222decfbb1c5b, type: 3}
 --- !u!1 &1594363720
@@ -1018,6 +1033,7 @@ MonoBehaviour:
   audioManager: {fileID: 756274412}
   waveManager: {fileID: 461117625}
   playerManager: {fileID: 711506826}
+  camRotation: {fileID: 534669908}
   colorPalette:
   - enemyType: 0
     color: {r: 0, g: 0.57601166, b: 1, a: 1}

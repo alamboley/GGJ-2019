@@ -29,6 +29,7 @@ public class Game : MonoBehaviour
     public AudioManager audioManager;
     public WaveManager waveManager;
     public PlayerManager playerManager;
+    public CameraRotation camRotation;
 
     [Header("CONFIGS")]
     public List<ColorConfig> colorPalette = new List<ColorConfig>();
@@ -54,6 +55,10 @@ public class Game : MonoBehaviour
     void Awake()
     {
         instance = this;
+        audioManager.OnBeat.AddListener(() =>
+        {
+            camRotation.Zoom();
+        });
     }
 
     public ColorConfig GetColor(EnemyType enemyType)
