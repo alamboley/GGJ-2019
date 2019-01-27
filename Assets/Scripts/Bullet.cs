@@ -1,18 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour
 {
+    public EnemyType type = EnemyType.W;
     public float LifeSpan;
     public float Speed = 2;
     public Player player { get; set; }
 
     float lifeSpan;
 
+    public SpriteRenderer sr;
+
+    private void Awake()
+    {
+        if (sr == null)
+            sr = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
+        sr.color = Game.instance.GetColor(this.type).color;
+    }
+
+
     void Start()
     {
         lifeSpan = LifeSpan;
-
-        Debug.Log(lifeSpan);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

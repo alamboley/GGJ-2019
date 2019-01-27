@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
+    public EnemyType type = EnemyType.W;
     public float AimSpeed;
     public float ShootingSpeed;
 
@@ -26,6 +27,11 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+    }
+
+    private void OnEnable()
+    {
+        this.sprite.color = Game.instance.GetColor(this.type).color;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
