@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class HomeManager : MonoBehaviour
 {
-    public Text LifeText; 
     public int life = 3;
+
+    SpriteRenderer sprite;
 
     void Start()
     {
-        UpdateLifeText();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -26,14 +25,8 @@ public class HomeManager : MonoBehaviour
         {
             Game.instance.HomeIsDead();
             Destroy(this.gameObject);
-            return;
         }
 
-        UpdateLifeText();
-    }
-    
-    void UpdateLifeText()
-    {
-        LifeText.text = "Vies : " + life;
+        sprite.color = new Color(1, 1, 1, (float)life / 6);
     }
 }
