@@ -18,7 +18,8 @@ public class HomeManager : MonoBehaviour
         foreach (Player player in FindObjectsOfType<Player>())
             player.OnTriggerExit2D(collision);
 
-        Destroy(collision.gameObject);
+        //Destroy(collision.gameObject);
+        collision.gameObject.SetActive(false);
         FindObjectOfType<WaveManager>().MonsterKilled(collision.GetComponent<Enemy>());
 
         if (--life == 0)

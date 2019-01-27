@@ -26,11 +26,15 @@ public class WaveManager : MonoBehaviour
     
     float diagonal;
 
+    EnemiesPoolManager EnemiesPoolManager;
+
     /// <summary>
     /// Start function called at the beginning of the project
     /// </summary>
     void Start()
     {
+        EnemiesPoolManager = FindObjectOfType<EnemiesPoolManager>();
+
         currentWave = 1;
 
         Camera cam = Camera.main;
@@ -106,7 +110,14 @@ public class WaveManager : MonoBehaviour
             int enemiesRequired = Mathf.RoundToInt(Mathf.Lerp(minMonsters,maxMonters,curvevalue));
             for (int i = enemies.Count; i < enemiesRequired; i++)
             {
-                enemies.Add(Instantiate<Enemy>(EnemyPrefab, GetRandomPosition(), Quaternion.identity, RootSpawner));
+                Enemy enemy = EnemiesPoolManager.GetFirstInactiveEnemy();
+                enemy.transform.position = GetRandomPosition();
+                enemy.transform.rotation = Quaternion.identity;
+
+                enemy.ResetEnemy();
+
+                enemy.gameObject.SetActive(true);
+                
                 yield return new WaitForSeconds(0.8f);
             }
 

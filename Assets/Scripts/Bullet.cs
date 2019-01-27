@@ -11,8 +11,6 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         lifeSpan = LifeSpan;
-
-        Debug.Log(lifeSpan);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -29,7 +27,8 @@ public class Bullet : MonoBehaviour
             // uber ugly fix, damn Unity bug
             player.OnTriggerExit2D(collision);
 
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            enemy.gameObject.SetActive(false);
 
             FindObjectOfType<WaveManager>().MonsterKilled(enemy);
         }
