@@ -34,6 +34,23 @@ public class Game : MonoBehaviour
     public List<ColorConfig> colorPalette = new List<ColorConfig>();
 
 
+    public AnimationCurve playerProgCurve;
+    public int minPlayers = 1;
+    public int maxPlayers = 5;
+
+    public AnimationCurve enemyProgCurve;
+    public int minMonsters = 2;
+    public int maxMonsters = 100;
+
+    [Header("GAME")]
+    public float gameDuration = 5f * 60f; // 60 seconds * 5
+    [HideInInspector]
+    public float gameTimeNormalized = 0f;
+
+
+    //------
+    float gameStartTime = 0f;
+
     void Awake()
     {
         instance = this;
@@ -55,10 +72,25 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
+        this.gameStartTime = Time.unscaledTime;
+    }
 
+    private void Update()
+    {
+        this.gameTimeNormalized = (Time.unscaledTime-this.gameStartTime) / this.gameDuration;
+        if (this.gameTimeNormalized >= 1.0f)
+            this.gameTimeNormalized = 1.0f;
+
+        if (this.gameTimeNormalized >= 1.0f)
+            GameEnd();
     }
 
     public void HomeIsDead()
+    {
+        Reload();
+    }
+
+    void GameEnd()
     {
         Reload();
     }

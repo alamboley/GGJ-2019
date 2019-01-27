@@ -173,41 +173,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWave: 1
   monstersKilledCount: 0
-  minMonsters: 10
-  maxMonters: 100
   gameStartTime: 0
   waveDuration: 7.5
   ratioSpawn: 3.4
-  endGameTime: 300
   enemies: []
   EnemyPrefab: {fileID: 1999851090874484085, guid: 5728de6d4d44b5f479d4fa2067539f14,
     type: 3}
   RootSpawner: {fileID: 375074572}
   WaveText: {fileID: 1866242838}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &461117626
 Transform:
   m_ObjectHideFlags: 0
@@ -522,33 +495,6 @@ MonoBehaviour:
   speedCircleRotation: 12
   PlayersPrefab: {fileID: 7884909413695706778, guid: 70a02b4c6b247aa419e66d3fcbd25e9a,
     type: 3}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  minPlayers: 1
-  maxPlayers: 10
-  endGameTime: 300
 --- !u!4 &711506827
 Transform:
   m_ObjectHideFlags: 0
@@ -1067,6 +1013,60 @@ MonoBehaviour:
     color: {r: 0.54198956, g: 1, b: 0, a: 1}
   - enemyType: 4
     color: {r: 1, g: 1, b: 1, a: 1}
+  playerProgCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  minPlayers: 1
+  maxPlayers: 5
+  enemyProgCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  minMonsters: 2
+  maxMonsters: 100
+  gameDuration: 300
+  gameTimeNormalized: 0
 --- !u!4 &1594363722
 Transform:
   m_ObjectHideFlags: 0

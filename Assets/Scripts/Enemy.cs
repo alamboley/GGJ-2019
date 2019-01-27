@@ -1,17 +1,28 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyType type = EnemyType.W; 
     public float speed;
     public float life;
+    public SpriteRenderer sr;
 
     float m_life;
 
-    void Awake()
+    private void Awake()
     {
-        m_life = life;
+        if(sr == null)
+            sr = GetComponentInChildren<SpriteRenderer>();
+        
+        m_life = file;
     }
-    
+
+    private void OnEnable()
+    {
+        sr.color = Game.instance.GetColor(this.type).color;
+    }
+
     void Update()
     {
         transform.position += -transform.position.normalized * Time.deltaTime * speed;
