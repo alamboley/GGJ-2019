@@ -17,8 +17,6 @@ public class WaveManager : MonoBehaviour
 
     public Enemy EnemyPrefab;
     public Transform RootSpawner;
-    public Text WaveText;
-
     
     float diagonal;
 
@@ -40,8 +38,6 @@ public class WaveManager : MonoBehaviour
         float width = height * cam.aspect;
         diagonal = Mathf.Sqrt((height * height) + (width * width)) / 2;
 
-        UpdateWaveText();
-
         gameStartTime = Time.unscaledTime;
 
         StartCoroutine(UpdateMonsters());
@@ -57,7 +53,6 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-
         waveQuadrantAngle += 10 * Time.deltaTime;
 
         // Decrease time between each monster spawn
@@ -66,16 +61,6 @@ public class WaveManager : MonoBehaviour
             currentWave++;
             waveDuration -= 0.1f;
         }
-
-        UpdateWaveText();
-    }
-
-    /// <summary>
-    /// UI Text update
-    /// </summary>
-    void UpdateWaveText()
-    {
-        WaveText.text = "Vague : " + currentWave;
     }
 
     /// <summary>
