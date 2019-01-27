@@ -22,7 +22,11 @@ public class HomeManager : MonoBehaviour
         FindObjectOfType<WaveManager>().MonsterKilled(collision.GetComponent<Enemy>());
 
         if (--life == 0)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        {
+            Game.instance.HomeIsDead();
+            Destroy(this.gameObject);
+            return;
+        }
 
         UpdateLifeText();
     }

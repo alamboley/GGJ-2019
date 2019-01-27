@@ -146,21 +146,51 @@ public class PlayerManager : MonoBehaviour
 #else
         //something
 #endif
-        
-        // Globalement, j'ai pas trop trouvé comment faire. J'ai essayé en copiant un peu les touch du dessus mais ça faisait comme avec la souris
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+
+        if(currentMouseTouch == null)
         {
-            // Left key
-            
+            //KEYBOARD CONTROL
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                keyBoardVelocity = -5f;
+
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                keyBoardVelocity = 5f;
+
+            }
+            else if(Input.GetKey(KeyCode.LeftArrow))
+            {
+                keyBoardVelocity -= keyBoardBaseSpeed * Time.deltaTime;
+            }
+            else if(Input.GetKey(KeyCode.RightArrow))
+            {
+                keyBoardVelocity += keyBoardBaseSpeed * Time.deltaTime;
+            }
+            else if(Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) {
+                keyBoardVelocity = 0f;
+            }
+
+            if (keyBoardVelocity < -keyboardSpeedCap)
+                keyBoardVelocity = -keyboardSpeedCap;
+
+            if (keyBoardVelocity > keyboardSpeedCap)
+                keyBoardVelocity = keyboardSpeedCap;
+                
+            RotatePlayers(keyBoardVelocity);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else //TOUCH/MOUSE CONTROL
         {
-            // Right key
-            
+            keyBoardVelocity = 0f;
+            UpdateInput();
         }
 
-        UpdateInput();
     }
+
+    float keyBoardVelocity = 0f;
+    float keyboardSpeedCap = 60f;
+    float keyBoardBaseSpeed = 50f;
 
     bool dragging = false;
     float dragAngle = 0f;
@@ -204,7 +234,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            float dadelta = Vector3.SignedAngle(touchRelativePosition, lastTouchRelativePost, Vector3.forward) * 60f;
+            float dadelta = Vector3.SignedAngle(touchRelativePosition, lastTouchRelativePost, Vector3.forward) * 120f;
             dragAngle += dadelta;
 
             RotatePlayers(dadelta * Mathf.Deg2Rad);
