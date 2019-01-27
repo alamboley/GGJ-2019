@@ -75,6 +75,44 @@ public class Game : MonoBehaviour
         return null;
     }
 
+    public List<ColorConfig> GetRandomColorConfigSet(int num)
+    {
+        List<ColorConfig> colors = new List<ColorConfig>();
+        List<int> indices = new List<int>();
+        for (int i = 0; i < colorPalette.Count; i++) indices.Add(i);
+
+        int lastIndex = -1;
+        do
+        {
+
+            indices.Shuffle();
+            int i = indices[0];
+
+            if(lastIndex == -1 || i != lastIndex)
+            {
+                colors.Add(colorPalette[i]);
+            }
+            else
+            {
+                for(int k = 1; k < indices.Count; k++)
+                {
+                    if (k == lastIndex)
+                        continue;
+
+                    i = k;
+                    colors.Add(colorPalette[i]);
+                }
+            }
+
+            lastIndex = i;
+
+
+        } while (colors.Count < num);
+
+
+        return colors;
+    }
+
     private void Start()
     {
         this.gameStartTime = Time.unscaledTime;

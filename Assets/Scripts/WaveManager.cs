@@ -98,10 +98,35 @@ public class WaveManager : MonoBehaviour
         return randomAngle * diagonal;
     }
 
+    bool IsWithinAngleDeg(Vector3 pos, float angleStart,float angleEnd)
+    {
+        float ang = Vector3.SignedAngle(Vector3.right, pos, Vector3.forward);
+        return Mathf.DeltaAngle(angleStart, ang) < (angleStart + angleEnd);
+    }
+
     //CALC ENEMY TYPE BASED ON POSITION IN QUADRANT AND CURRENT PLAYERS ACTIVE.
     void SetEnemyType(Enemy enemy)
     {
         List<Player> players = Game.instance.playerManager.players;
+        List<EnemyType> enemyTypes = new List<EnemyType>();
+
+        foreach (Player p in players)
+            if(!enemyTypes.Contains(p.type))
+                enemyTypes.Add(p.type);
+
+        float circleDivDeg = 360f / (float)enemyTypes.Count;
+
+        for(int i = 0; i < enemyTypes.Count; i++)
+        {
+            float angleStart = this.waveQuadrantAngle + circleDivDeg;
+            float angleEnd = angleStart + circleDivDeg;
+            if(IsWithinAngleDeg(enemy.transform.position,angleStart,angleEnd))
+            {
+                enemy.type = enemyTypes[i];
+            }
+
+        }
+
         //this.angle
     }
 

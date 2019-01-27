@@ -31,6 +31,11 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
+        ResetPlayer();
+    }
+
+    public void ResetPlayer()
+    {
         this.sprite.color = Game.instance.GetColor(this.type).color;
     }
 

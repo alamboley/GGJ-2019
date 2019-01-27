@@ -51,13 +51,18 @@ public class PlayerManager : MonoBehaviour
         }
         players.Clear();
 
+        List<ColorConfig> colorConfigs = Game.instance.GetRandomColorConfigSet(nbPlayer);
+
         CircleDiv = 360f / (float)nbPlayer;
 
         for (int i = 0; i < nbPlayer; ++i)
         {
             float x = Mathf.Cos((transform.eulerAngles.z + (CircleDiv * i) + 90) * Mathf.Deg2Rad);
             float y = Mathf.Sin((transform.eulerAngles.z + (CircleDiv * i) + 90) * Mathf.Deg2Rad);
-            players.Add(Instantiate(PlayersPrefab, new Vector3(x, y, 0), Quaternion.AngleAxis(CircleDiv * i, Vector3.forward)));
+            Player p = Instantiate(PlayersPrefab, new Vector3(x, y, 0), Quaternion.AngleAxis(CircleDiv * i, Vector3.forward));
+            p.type = colorConfigs[i].enemyType;
+            p.ResetPlayer();
+            players.Add(p);
         }
 
         if (OnPlayersCreated != null)
