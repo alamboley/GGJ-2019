@@ -97,7 +97,14 @@ public class WaveManager : MonoBehaviour
 
         return randomAngle * diagonal;
     }
-    
+
+    //CALC ENEMY TYPE BASED ON POSITION IN QUADRANT AND CURRENT PLAYERS ACTIVE.
+    void SetEnemyType(Enemy enemy)
+    {
+        List<Player> players = Game.instance.playerManager.players;
+        //this.angle
+    }
+
     /// <summary>
     /// Coroutine called every wave duration to Spawn some monsters
     /// </summary>
@@ -113,6 +120,8 @@ public class WaveManager : MonoBehaviour
                 Enemy enemy = EnemiesPoolManager.GetFirstInactiveEnemy();
                 enemy.transform.position = GetRandomPosition();
                 enemy.transform.rotation = Quaternion.identity;
+
+                SetEnemyType(enemy);
 
                 enemy.ResetEnemy();
 

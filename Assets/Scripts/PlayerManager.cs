@@ -26,7 +26,9 @@ public class PlayerManager : MonoBehaviour
     public float speedCircleRotation;
 
     public Player PlayersPrefab;
-    List<Player> players = new List<Player>();
+
+    [HideInInspector]
+    public List<Player> players = new List<Player>();
 
     List<Touch> touches = new List<Touch>();
     List<Touch> touchgesgc = new List<Touch>();
