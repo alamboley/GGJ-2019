@@ -196,7 +196,6 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 1999851090874484085, guid: 5728de6d4d44b5f479d4fa2067539f14,
     type: 3}
   RootSpawner: {fileID: 375074572}
-  WaveText: {fileID: 0}
 --- !u!4 &461117626
 Transform:
   m_ObjectHideFlags: 0
@@ -971,59 +970,35 @@ MonoBehaviour:
     color: {r: 0.54198956, g: 1, b: 0, a: 1}
   - enemyType: 4
     color: {r: 1, g: 0, b: 0.12547493, a: 1}
-  playerProgCurve:
+  progCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0.05
+      outSlope: 0.05
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.25
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: -0
+      outSlope: -0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.17916667
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   minPlayers: 1
   maxPlayers: 5
-  enemyProgCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   minMonsters: 2
-  maxMonsters: 100
-  gameDuration: 300
+  maxMonsters: 60
+  gameDuration: 120
   gameTimeNormalized: 0
 --- !u!4 &1594363722
 Transform:
@@ -1134,7 +1109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a208723368ac0479007a3ce21a4cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeText: {fileID: 0}
   life: 6
 --- !u!58 &2080115937
 CircleCollider2D:
