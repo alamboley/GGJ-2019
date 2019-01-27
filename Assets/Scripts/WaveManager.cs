@@ -139,7 +139,7 @@ public class WaveManager : MonoBehaviour
 
         while(true)
         {
-            float curvevalue = Game.instance.enemyProgCurve.Evaluate(Game.instance.gameTimeNormalized);
+            float curvevalue = Game.instance.progCurve.Evaluate(Game.instance.gameTimeNormalized);
             int enemiesRequired = Mathf.RoundToInt(Mathf.Lerp(Game.instance.minMonsters,Game.instance.maxMonsters,curvevalue));
             for (int i = enemies.Count; i < enemiesRequired; i++)
             {

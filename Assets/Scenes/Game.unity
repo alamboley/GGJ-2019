@@ -879,7 +879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 242.70001, y: -79.07001}
+  m_AnchoredPosition: {x: 242.7002, y: -79.069824}
   m_SizeDelta: {x: 385.4, y: 58.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1468779734
@@ -1052,7 +1052,7 @@ MonoBehaviour:
     color: {r: 0.54198956, g: 1, b: 0, a: 1}
   - enemyType: 4
     color: {r: 1, g: 0, b: 0.12547493, a: 1}
-  playerProgCurve:
+  progCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1078,33 +1078,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   minPlayers: 1
   maxPlayers: 5
-  enemyProgCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   minMonsters: 2
   maxMonsters: 100
-  gameDuration: 300
+  gameDuration: 120
   gameTimeNormalized: 0
 --- !u!4 &1594363722
 Transform:
@@ -1156,7 +1132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -175.70001, y: 91.20001}
+  m_AnchoredPosition: {x: -175.7002, y: 91.200195}
   m_SizeDelta: {x: 251.5, y: 82.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1866242838

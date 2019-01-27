@@ -34,12 +34,11 @@ public class Game : MonoBehaviour
     [Header("CONFIGS")]
     public List<ColorConfig> colorPalette = new List<ColorConfig>();
 
+    public AnimationCurve progCurve; 
 
-    public AnimationCurve playerProgCurve;
     public int minPlayers = 1;
     public int maxPlayers = 5;
 
-    public AnimationCurve enemyProgCurve;
     public int minMonsters = 2;
     public int maxMonsters = 100;
 
@@ -77,9 +76,18 @@ public class Game : MonoBehaviour
 
     public List<ColorConfig> GetRandomColorConfigSet(int num)
     {
+
         List<ColorConfig> colors = new List<ColorConfig>();
         List<int> indices = new List<int>();
         for (int i = 0; i < colorPalette.Count; i++) indices.Add(i);
+
+
+        foreach(ColorConfig cc1 in colors)
+        {
+            int i1 = colorPalette.IndexOf(cc1);
+            if(indices.Contains(i1))
+                indices.Remove(i1);
+        }
 
         int lastIndex = -1;
         do
