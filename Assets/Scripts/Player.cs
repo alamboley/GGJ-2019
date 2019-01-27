@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
         bullet.transform.position = transform.position;
         bullet.transform.rotation = transform.rotation;
         bullet.player = this;
+        bullet.type = this.type;
 
         bullet.ResetBullet();
 
