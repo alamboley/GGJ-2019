@@ -998,7 +998,7 @@ MonoBehaviour:
   maxPlayers: 5
   minMonsters: 2
   maxMonsters: 60
-  gameDuration: 20
+  gameDuration: 120
   gameTimeNormalized: 0
 --- !u!4 &1594363722
 Transform:
