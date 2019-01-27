@@ -33,10 +33,18 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Player" || collision.tag == "Bullet")
             return;
+            
+        //FILTER BY TYPE
+        Enemy enemy = collision.GetComponent<Enemy>();
+
+        if (enemy == null)
+            return;
+
+        if (enemy.type != this.type)
+            return;
+
 
         gameObject.SetActive(false);
-
-        Enemy enemy = collision.GetComponent<Enemy>();
 
         if (--enemy.life == 0)
         {
@@ -46,7 +54,7 @@ public class Bullet : MonoBehaviour
             //Destroy(collision.gameObject);
             enemy.gameObject.SetActive(false);
 
-            FindObjectOfType<WaveManager>().MonsterKilled(enemy);
+            Game.instance.waveManager.MonsterKilled(enemy);
         }
     }
 
