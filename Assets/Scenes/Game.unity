@@ -1010,6 +1010,17 @@ MonoBehaviour:
   audioManager: {fileID: 756274412}
   waveManager: {fileID: 461117625}
   playerManager: {fileID: 711506826}
+  colorPalette:
+  - enemyType: 0
+    color: {r: 0, g: 0.57601166, b: 1, a: 1}
+  - enemyType: 1
+    color: {r: 0.990566, g: 0, b: 0.68903303, a: 1}
+  - enemyType: 2
+    color: {r: 1, g: 0.80982506, b: 0, a: 1}
+  - enemyType: 3
+    color: {r: 0.54198956, g: 1, b: 0, a: 1}
+  - enemyType: 4
+    color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1594363722
 Transform:
   m_ObjectHideFlags: 0
