@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
         if(sr == null)
             sr = GetComponentInChildren<SpriteRenderer>();
         
-        m_life = file;
+        m_life = life;
     }
 
     private void OnEnable()
