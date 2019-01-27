@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class HomeManager : MonoBehaviour
 {
-    public int life = 3;
+    public List<SpriteRenderer> lifeSprites;
 
-    SpriteRenderer sprite;
+    int maxLife = 6;
+    int life = 0;
+
 
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        life = maxLife;
+        UpdateLifeDisplay(6);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +31,18 @@ public class HomeManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        sprite.color = new Color(1, 1, 1, (float)life / 6);
+        UpdateLifeDisplay(life);
+    }
+
+    void UpdateLifeDisplay(int l)
+    {
+        foreach (SpriteRenderer sr in lifeSprites)
+            sr.gameObject.SetActive(false);
+
+        if(l > 0)
+        {
+            lifeSprites[l - 1].gameObject.SetActive(true);
+        }
+
     }
 }
