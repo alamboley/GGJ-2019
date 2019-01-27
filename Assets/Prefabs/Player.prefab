@@ -94,8 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fe231d7dbe434488f578e344055864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 2341099891173575233, guid: e3cba70ec1e8f0b4ab75f29063f5abcc,
-    type: 3}
+  BulletsPoolManager: {fileID: 0}
   AimSpeed: 0
   ShootingSpeed: 0.25
   enemiesInRange: []
