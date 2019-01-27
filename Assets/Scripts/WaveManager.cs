@@ -124,7 +124,6 @@ public class WaveManager : MonoBehaviour
             {
                 enemy.type = enemyTypes[i];
             }
-
         }
 
         //this.angle
@@ -136,6 +135,8 @@ public class WaveManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator UpdateMonsters()
     {
+        yield return null;
+
         while(true)
         {
             float curvevalue = Game.instance.enemyProgCurve.Evaluate(Game.instance.gameTimeNormalized);
@@ -146,7 +147,8 @@ public class WaveManager : MonoBehaviour
                 enemy.transform.position = GetRandomPosition();
                 enemy.transform.rotation = Quaternion.identity;
 
-                SetEnemyType(enemy);
+                enemy.type = Game.instance.playerManager.players.PickRandom().type;
+                //SetEnemyType(enemy);
 
                 enemy.ResetEnemy();
 
