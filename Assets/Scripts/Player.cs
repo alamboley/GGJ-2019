@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
-    public Bullet BulletPrefab;
-
     public float AimSpeed;
     public float ShootingSpeed;
 
+    BulletsPoolManager BulletsPoolManager;
     WaveManager WaveManager;
 
     bool hasAimed;
@@ -19,6 +18,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        BulletsPoolManager = FindObjectOfType<BulletsPoolManager>();
         WaveManager = FindObjectOfType<WaveManager>();
 
         sprite = GetComponent<SpriteRenderer>();
@@ -70,8 +70,14 @@ public class Player : MonoBehaviour
 
     void Fire()
     {
-        GameObject bullet = Instantiate(BulletPrefab.gameObject, transform.position, transform.rotation);
-        bullet.GetComponent<Bullet>().player = this;
+        Bullet bullet = BulletsPoolManager.GetFirstInactiveBullet();
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = transform.rotation;
+        bullet.player = this;
+
+        bullet.ResetBullet();
+
+        bullet.gameObject.SetActive(true);
 
         delay = 0;
     }

@@ -6,12 +6,13 @@ public class Bullet : MonoBehaviour
     public float Speed = 2;
     public Player player { get; set; }
 
-    float x;
-    float y;
+    float lifeSpan;
 
     void Start()
     {
-        
+        lifeSpan = LifeSpan;
+
+        Debug.Log(lifeSpan);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +20,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Player" || collision.tag == "Bullet")
             return;
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
         Enemy enemy = collision.GetComponent<Enemy>();
 
@@ -36,12 +37,17 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        x = Mathf.Cos((transform.eulerAngles.z + 90) * Mathf.Deg2Rad);
-        y = Mathf.Sin((transform.eulerAngles.z + 90) * Mathf.Deg2Rad);
+        float x = Mathf.Cos((transform.eulerAngles.z + 90) * Mathf.Deg2Rad);
+        float y = Mathf.Sin((transform.eulerAngles.z + 90) * Mathf.Deg2Rad);
         transform.position += new Vector3(x, y, 0) * Speed * Time.deltaTime;
 
-        LifeSpan -= Time.deltaTime;
-        if (LifeSpan < 0)
-            Destroy(gameObject);
+        lifeSpan -= Time.deltaTime;
+        if (lifeSpan < 0)
+            gameObject.SetActive(false);
+    }
+
+    public void ResetBullet()
+    {
+        lifeSpan = LifeSpan;
     }
 }
